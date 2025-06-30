@@ -1,12 +1,22 @@
-# React + Vite
+# Ingin Menjadi Programmer Handal Namun Enggan Ngoding
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🧾 Identitas
 
-Currently, two official plugins are available:
+**Nama:** Chelvin Ramadani Yulianto
+**Kode Unik:** P001
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📚 Kategori Project
 
-## Expanding the ESLint configuration
+**Teknologi Pendidikan (Edutech)**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 Deskripsi
+
+**"Ingin Menjadi Programmer Handal Namun Enggan Ngoding"** adalah sebuah komunitas IT berpusat di Facebook. Komunitas ini dirancang sebagai ruang belajar santai bagi siapa saja yang tertarik dengan dunia pemrograman, tetapi ingin belajar tanpa tekanan.
+
+Kami percaya bahwa proses belajar bisa menjadi hal yang menyenangkan. Di komunitas ini, anggota dapat:
+
+- Berdiskusi ringan seputar pemrograman dan teknologi
+- Mengikuti kegiatan dan tantangan seru yang tidak kaku
+- Berbagi pengalaman, cerita, dan tips belajar coding
+- Tumbuh bersama komunitas yang suportif dan tidak menghakimi
+- Berbagi meme :v

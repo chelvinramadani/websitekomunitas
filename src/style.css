@@ -1,16 +1,39 @@
 .navbar {
-  background-color: #1c4e80; /* warna biru tua */
+  background-color: #1c4e80;
   color: white;
   padding: 15px 30px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .navbar-logo {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   letter-spacing: 1px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
 }
 
 .navbar-links {
@@ -29,10 +52,47 @@
   text-decoration: underline;
 }
 
+.navbar-scrolled {
+  background-color: #163c60;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #1c4e80;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 0;
+    display: none;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+}
+
 .hero {
   text-align: center;
-  padding: 60px 20px;
-  background-color: #d0ebff; /* biru muda dari logo */
+  padding: 150px 20px 150px;
+  background-color: #d0ebff;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-logo {
@@ -129,76 +189,170 @@
   flex-wrap: wrap;
   gap: 20px;
 }
-
+/* Reset untuk container tetap */
 .join-section {
-  padding: 60px 20px;
-  text-align: center;
-  background-color: #ffff;
+  padding: 3rem 1rem;
+  background: #ffff;
+  transition: opacity 0.5s ease;
 }
 
 .join-container {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
 }
 
 .join-title {
-  font-size: 28px;
-  color: #1c4e80;
-  margin-bottom: 30px;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
-.join-content {
+/* Stats (tanpa card) */
+.stats-row-plain {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.join-box {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: left;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.stats-row-plain div {
+  text-align: center;
 }
 
-.join-box h3 {
-  color: #1c4e80;
-  margin-bottom: 10px;
+.stats-row-plain h3 {
+  font-size: 1.8rem;
+  color: #0077cc;
+  margin: 0;
 }
 
-.join-box ul,
-.join-box ol {
-  margin-left: 20px;
+.stats-row-plain p {
+  font-size: 0.95rem;
+  margin: 0.3rem 0 0;
   color: #333;
 }
 
+/* Benefit Cards */
+.benefit-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.benefit-card {
+  background: #fff;
+  width: 240px;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+}
+
+.benefit-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #0077cc;
+}
+
+.benefit-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Join Info (Center Column) */
+.join-info-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.join-box.full {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.join-box.full h3 {
+  color: #0077cc;
+  margin-bottom: 1rem;
+}
+
+.join-box.full ul,
+.join-box.full ol {
+  padding-left: 1.2rem;
+}
+
+/* CTA Button */
 .join-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #1c4e80;
-  color: white;
-  font-size: 16px;
-  border-radius: 6px;
+  background: #0077cc;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
   text-decoration: none;
-  transition: background-color 0.2s ease;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 .join-button:hover {
-  background-color: #163c60;
+  background: #005fa3;
+}
+.footer {
+  background-color: #002c47;
+  color: #fff;
+  padding: 2rem 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.footer {
-  background-color: #1c4e80;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
+.footer-visible {
+  opacity: 1;
 }
 
 .footer-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
-  line-height: 1.6;
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.footer-top h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+  color: #00bfff;
+}
+
+.footer-top p {
+  font-size: 0.95rem;
+  color: #cfe8f7;
+}
+
+.footer-links {
+  margin: 1.5rem 0;
+}
+
+.footer-links a {
+  margin: 0 1rem;
+  color: #bde0f9;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom p {
+  font-size: 0.85rem;
+  color: #a8cce4;
+  margin-top: 1rem;
 }

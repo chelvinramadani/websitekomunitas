@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../style.css';
 
 const About = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300); // delay sedikit lebih lama dari Hero
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="about-section">
+    <section className={`about-section ${isVisible ? 'about-visible' : ''}`} id="about">
       <div className="about-container">
         <h2 className="about-title">Tentang Kami</h2>
         <p className="about-text">

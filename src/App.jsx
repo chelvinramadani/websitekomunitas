@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,11 +10,11 @@ const App = () => {
     <div>
       <Navbar />
 
-      <section id="home">
+      <section id="beranda">
         <Hero />
       </section>
 
-      <section id="about">
+      <section id="tentang">
         <About />
       </section>
 
@@ -23,22 +22,8 @@ const App = () => {
       <Kegiatan />
       </section>
 
-      <section id="join">
-        <Join 
-          title="Gabung dengan IMPHNEN"
-          requirements={[
-            "Tidak sedang dikejar deadline",
-            "Menyukai diskusi ringan seputar pemrograman",
-            "Siap ngoding saat mood datang"
-          ]}
-          steps={[
-            "Kunjungi grup Facebook IMPHNEN",
-            "Klik tombol \"Gabung Grup\"",
-            "Jawab pertanyaan santai dari admin 😎"
-          ]}
-          buttonText="Gabung Sekarang di Facebook 🚀"
-          buttonLink="https://facebook.com/groups/imphnen"
-        />
+      <section id="gabung">
+        <Join />
       </section>
 
       <Footer />

@@ -1,8 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import '../style.css';
+import { useState, useEffect } from "react";
+import { Users, Code2, Lightbulb, Laugh } from "lucide-react";
+import Card from "./Card";
 
-const Join = ({ title, requirements, steps, buttonText, buttonLink }) => {
-  const [isVisible, setIsVisible] = useState(false);
+const Join = ({
+  title = "Gabung dengan IMPHNEN",
+  requirements = [
+    "Tidak sedang dikejar deadline",
+    "Menyukai diskusi ringan seputar pemrograman",
+    "Siap ngoding saat mood datang",
+  ],
+  steps = [
+    "Kunjungi grup Facebook IMPHNEN",
+    'Klik tombol "Gabung Grup"',
+    "Jawab pertanyaan santai dari admin 😎",
+  ],
+  buttonText = "Gabung Sekarang di Facebook 🚀",
+  buttonLink = "https://facebook.com/groups/imphnen",
+}) => {
   const [stats, setStats] = useState({
     members: 0,
     events: 0,
@@ -11,8 +25,6 @@ const Join = ({ title, requirements, steps, buttonText, buttonLink }) => {
   });
 
   useEffect(() => {
-    setIsVisible(true);
-
     const targets = {
       members: 200000,
       events: 50,
@@ -20,90 +32,161 @@ const Join = ({ title, requirements, steps, buttonText, buttonLink }) => {
       discussions: 5000,
     };
 
-    const duration = 2000;
-    const steps = 30;
-    const interval = duration / steps;
+    const duration = 1800;
+    const totalSteps = 30;
+    const interval = duration / totalSteps;
 
     let step = 0;
-    const counting = setInterval(() => {
+    const counter = setInterval(() => {
       step++;
+
       setStats({
-        members: Math.min(Math.floor((targets.members / steps) * step), targets.members),
-        events: Math.min(Math.floor((targets.events / steps) * step), targets.events),
-        mentors: Math.min(Math.floor((targets.mentors / steps) * step), targets.mentors),
-        discussions: Math.min(Math.floor((targets.discussions / steps) * step), targets.discussions),
+        members: Math.min(
+          Math.floor((targets.members / totalSteps) * step),
+          targets.members
+        ),
+        events: Math.min(
+          Math.floor((targets.events / totalSteps) * step),
+          targets.events
+        ),
+        mentors: Math.min(
+          Math.floor((targets.mentors / totalSteps) * step),
+          targets.mentors
+        ),
+        discussions: Math.min(
+          Math.floor((targets.discussions / totalSteps) * step),
+          targets.discussions
+        ),
       });
-      if (step === steps) clearInterval(counting);
+
+      if (step === totalSteps) clearInterval(counter);
     }, interval);
 
-    return () => clearInterval(counting);
+    return () => clearInterval(counter);
   }, []);
 
-  const format = (num) => (num >= 1000 ? `${Math.floor(num / 1000)}K+` : `${num}+`);
+  const format = (num) => {
+    if (num >= 1_000_000) return `${Math.floor(num / 1_000_000)}M+`;
+    if (num >= 1_000) return `${Math.floor(num / 1_000)}K+`;
+    return `${num}+`;
+  };
 
   const benefits = [
-    { title: 'Networking Santai', description: 'Kenalan dengan calon programmer santai.' },
-    { title: 'Belajar Bareng', description: 'Diskusi ringan dan belajar tanpa tekanan.' },
-    { title: 'Inspirasi Project', description: 'Dapat ide project seru dari teman komunitas.' },
-    { title: 'Meme Eksklusif', description: 'Akses meme ngoding kaum rebahan.' },
+    {
+      title: "Relasi & Networking",
+      description: "Bertemu dengan orang-orang yang punya minat dan visi sama",
+      icon: Users,
+    },
+    {
+      title: "Lingkungan Positif",
+      description: "Diskusi ringan dan belajar dalam suasana santai tanpa tekanan.",
+      icon: Code2,
+    },
+    {
+      title: "Inspirasi Project",
+      description: "Dapat ide project seru dari teman komunitas.",
+      icon: Lightbulb,
+    },
+    {
+      title: "Meme Eksklusif",
+      description: "Akses meme dunia programmer.",
+      icon: Laugh,
+    },
   ];
 
   return (
-    <section className={`join-section ${isVisible ? 'join-visible' : ''}`} id="join">
-      <div className="join-container">
-        <h2 className="join-title">{title}</h2>
+    <section
+      id="join"
+      className="relative py-24 px-6 bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950"
+    >
+      <div className="max-w-7xl mx-auto text-center text-white">
+        {/* Title */}
+        <h2
+          className="
+            text-3xl md:text-4xl font-extrabold text-center mb-16
+            text-white leading-snug">
+          {title}
+        </h2>
 
         {/* Stats */}
-        <div className="stats-row-plain">
-          <div>
-            <h3>{format(stats.members)}</h3>
-            <p>Member Aktif</p>
-          </div>
-          <div>
-            <h3>{format(stats.events)}</h3>
-            <p>Event Bulanan</p>
-          </div>
-          <div>
-            <h3>{format(stats.mentors)}</h3>
-            <p>Mentor Profesional</p>
-          </div>
-          <div>
-            <h3>{format(stats.discussions)}</h3>
-            <p>Diskusi Mingguan</p>
-          </div>
-        </div>
-
-        {/* Benefits */}
-        <div className="benefit-grid">
-          {benefits.map((benefit, index) => (
-            <div className="benefit-card" key={index}>
-              <h4>{benefit.title}</h4>
-              <p>{benefit.description}</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+          {[
+            { label: "Member Aktif", value: stats.members },
+            { label: "Event Bulanan", value: stats.events },
+            { label: "Mentor Profesional", value: stats.mentors },
+            { label: "Diskusi Mingguan", value: stats.discussions },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="
+                rounded-2xl bg-white/10 backdrop-blur-md
+                border border-white/10
+                py-8 transition
+                hover:-translate-y-1 hover:bg-white/15
+              "
+            >
+              <h3 className="text-2xl font-extrabold">
+                {format(item.value)}
+              </h3>
+              <p className="mt-2 text-sm text-blue-200">{item.label}</p>
             </div>
           ))}
         </div>
 
-        {/* Join Info (Single Column) */}
-        <div className="join-info-center">
-          <div className="join-box full">
-            <h3>Syarat Bergabung</h3>
-            <ul>
-              {requirements.map((req, i) => <li key={i}>{req}</li>)}
-            </ul>
+        {/* Benefits */}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mb-24">
+          {benefits.map((item, index) => (
+            <Card
+              key={index}
+              title={item.title}
+              description={item.description}
+              icon={item.icon}
+            />
+          ))}
+        </div>
 
-            <h3 style={{ marginTop: '2rem' }}>Cara Bergabung</h3>
-            <ol>
-              {steps.map((step, i) => <li key={i}>{step}</li>)}
-            </ol>
-          </div>
+        {/* Join Info */}
+        <div
+          className="
+            max-w-4xl mx-auto
+            bg-white/10 backdrop-blur-md
+            border border-white/10
+            rounded-3xl p-10 mb-16
+            text-left
+          "
+        >
+          <h3 className="text-xl font-extrabold mb-4">
+            Syarat Bergabung
+          </h3>
+          <ul className="list-disc list-inside text-blue-100 space-y-2">
+            {requirements.map((req, i) => (
+              <li key={i}>{req}</li>
+            ))}
+          </ul>
+
+          <h3 className="text-xl font-extrabold mt-10 mb-4">
+            Cara Bergabung
+          </h3>
+          <ol className="list-decimal list-inside text-blue-100 space-y-2">
+            {steps.map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
+          </ol>
         </div>
 
         {/* CTA */}
-        <a 
-          href={buttonLink} 
-          target="_blank" 
+        <a
+          href={buttonLink}
+          target="_blank"
           rel="noopener noreferrer"
-          className="join-button"
+          className="
+            inline-flex items-center justify-center
+            px-10 py-4 rounded-xl
+            font-semibold
+            bg-gradient-to-r from-blue-500 to-blue-600
+            hover:from-blue-400 hover:to-blue-500
+            transition shadow-lg hover:shadow-xl
+          "
         >
           {buttonText}
         </a>

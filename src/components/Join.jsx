@@ -15,7 +15,7 @@ const Join = ({
     "Jawab pertanyaan santai dari admin 😎",
   ],
   buttonText = "Gabung Sekarang di Facebook 🚀",
-  buttonLink = "https://facebook.com/groups/imphnen",
+  buttonLink = "https://web.facebook.com/groups/programmerhandal",
 }) => {
   const [stats, setStats] = useState({
     members: 0,
